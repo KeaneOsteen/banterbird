@@ -3,27 +3,30 @@
 <head>
     <title>Banterbird</title>
     <script src="/static/js/app.js" defer></script>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Banterbird</h1>
-    <div>
-        Logged in as: <strong id="username">admin</strong>
-    </div>
-    <div>
-        <h3>New Post</h3>
-        <textarea id="postInput" placeholder="What's on your mind?"></textarea><br>
-        <button onclick="submitPost();">Tweet</button>
-    </div>
-    <hr>
-    <h3>Feed</h3>
-    <div id="feed"></div>
-
-    <template id="post-template">
-        <div class="post">
-            <p><strong class="username"></strong>: <span class="message"></span></p>
-            <small class="timestamp"></small>
-            <hr>
+    <nav class="navbar">
+        <h1 class="logo">🐦 BanterBird</h1>
+        <p id="username">Logged in as: <strong>admin</strong></p>
+    </nav>
+    <div class="main">
+        <div class="postarea">
+            <h3>New Post</h3>
+            <textarea id="postInput" placeholder="What's on your mind?"></textarea><br>
+            <button onclick="submitPost();">Tweet</button>
         </div>
-    </template>
+    
+        <div id="feed">
+            <h3>Feed</h3>
+            <template id="post-template">
+                <div class="post">
+                    <p><strong class="username"></strong>: <span class="message"></span></p>
+                    <small class="timestamp"></small>
+                </div>
+            </template>
+        </div>
+    </div>
+    
 </body>
 </html>

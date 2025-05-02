@@ -7,12 +7,16 @@ function renderPost(post) {
     template.querySelector(".username").innerText = post.username;
     template.querySelector(".message").innerText = post.message;
     document.getElementById("feed").appendChild(template);
+
+    if (isNew) {
+        document.getElementById("feed").prepend(template);
+    } else {
+        document.getElementById("feed").appendChild(template);
+    }
 }
 
 async function submitPost() {
     const message = document.getElementById("postInput").value;
-    if (!message.trim()) return;
-
     try {
         const response = await fetch("/api/add_post", {
             method: "POST",
@@ -31,4 +35,14 @@ async function submitPost() {
         console.log("😭 Post failed", error);
     }
 }
+
+window.onload = async () => {
+    try {
+        const response = await fetch("/api/posts");
+        const posts = await response.json();
+        posts.forEach((post) => renderPost(post));
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+    }
+};
 
